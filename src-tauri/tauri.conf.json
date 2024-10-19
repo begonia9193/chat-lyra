@@ -1,0 +1,44 @@
+{
+  "$schema": "tauri.schema.json",
+  "productName": "Begonia Copilot",
+  "version": "0.1.0",
+  "identifier": "com.begonia.copilot.app",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "workbench",
+        "title": "Begonia Copilot",
+        "width": 800,
+        "height": 600,
+        "url": "src/workbench/index.html"
+      },
+      {
+        "label": "translate",
+        "title": "花花翻译",
+        "width": 800,
+        "height": 600,
+        "url": "src/translate/index.html"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
