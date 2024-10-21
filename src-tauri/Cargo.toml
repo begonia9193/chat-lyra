@@ -11,11 +11,13 @@ edition = "2021"
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.4", features = [] }
+tauri = { version = "2.0.4", features = ["unstable"] }
 tauri-plugin-shell = "2.0.1"
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
 tauri-plugin-store = "2.0.1"
+tauri-plugin-log = "2.0.1"
+log = "0.4.22"
 
 [target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
 tauri-plugin-global-shortcut = "2.0.1"

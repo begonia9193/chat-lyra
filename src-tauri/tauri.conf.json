@@ -21,9 +21,11 @@
       {
         "label": "translate",
         "title": "花花翻译",
-        "width": 800,
-        "height": 600,
-        "url": "src/translate/index.html"
+        "url": "src/translate/index.html",
+        "visible": false,
+        "closable": false,
+        "focus": true,
+        "transparent": true
       }
     ],
     "security": {

@@ -5,8 +5,7 @@ mod hotkey;
 mod translate;
 
 use std::sync::OnceLock;
-use serde_json::json;
-use tauri::{Manager, Wry};
+use tauri::{Wry};
 use tauri_plugin_store::{Store, StoreExt};
 
 pub static APP: OnceLock<tauri::AppHandle> = OnceLock::new();
@@ -18,17 +17,24 @@ fn run() {
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_global_shortcut::Builder::default().build())
-        .invoke_handler(tauri::generate_handler![])
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                .level_for("tao", log::LevelFilter::Off)
+                .level_for("os_info", log::LevelFilter::Off)
+                .level_for("notify", log::LevelFilter::Off)
+                .level_for("notify_debouncer_full", log::LevelFilter::Off)
+                .build()
+        )
+        .invoke_handler(tauri::generate_handler![
+            hotkey::registry_hotkey
+        ])
         .setup(|app| {
             APP.get_or_init(|| app.handle().clone());
-
-            let path = app.path().data_dir().unwrap();
-            println!("Current directory: {:?}", path);
 
             let config_store = app.store("config.json");
             CONFIG_STORE.get_or_init(|| config_store);
 
-            hotkey::init_hotkey();
+            hotkey::init_hotkey().expect("hotkey init fail!");
             Ok(())
         })
         .run(tauri::generate_context!())

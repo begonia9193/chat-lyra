@@ -8,7 +8,6 @@ function App() {
   const [greetMsg, setGreetMsg] = useState('')
   const [name, setName] = useState('')
   const configStoreRef = useRef<Store>()
-  const [config] = useState<Record<string, string>>({})
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -41,7 +40,6 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo"/>
         </a>
       </div>
-      <input value={config.slection_translate}/>
       <p>Click on the Tauri, Vite, and React logos to learn more.</p>
 
       <form
