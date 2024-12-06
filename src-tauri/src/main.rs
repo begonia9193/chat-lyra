@@ -3,13 +3,11 @@
 
 mod hotkey;
 mod translate;
+mod store;
 
 use std::sync::OnceLock;
-use tauri::{Wry};
-use tauri_plugin_store::{Store, StoreExt};
 
 pub static APP: OnceLock<tauri::AppHandle> = OnceLock::new();
-pub static CONFIG_STORE: OnceLock<Store<Wry>> = OnceLock::new();
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 fn run() {
@@ -26,15 +24,14 @@ fn run() {
                 .build()
         )
         .invoke_handler(tauri::generate_handler![
-            hotkey::registry_hotkey
+            hotkey::registry_hotkey_by_frontend
         ])
         .setup(|app| {
             APP.get_or_init(|| app.handle().clone());
 
-            let config_store = app.store("config.json");
-            CONFIG_STORE.get_or_init(|| config_store);
+            store::init_store(&app);
 
-            hotkey::init_hotkey().expect("hotkey init fail!");
+            hotkey::init_hotkey().expect("快捷键初始化失败");
             Ok(())
         })
         .run(tauri::generate_context!())
