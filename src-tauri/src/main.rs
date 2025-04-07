@@ -7,6 +7,8 @@ mod store;
 
 use std::sync::OnceLock;
 
+use tauri::{Manager, WindowEvent};
+
 pub static APP: OnceLock<tauri::AppHandle> = OnceLock::new();
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -32,6 +34,20 @@ fn run() {
             store::init_store(&app);
 
             hotkey::init_hotkey().expect("快捷键初始化失败");
+
+            let translate_window = app.get_window("translate").unwrap();
+            translate_window.clone().on_window_event(move |event| {
+                match event {
+                    WindowEvent::CloseRequested { api, .. } => {
+                        translate_window.hide().unwrap();
+                        api.prevent_close();
+                    },
+                    WindowEvent::Focused(false) => {
+                        translate_window.hide().unwrap();
+                    },
+                    _ => {}
+                }
+            });
             Ok(())
         })
         .run(tauri::generate_context!())

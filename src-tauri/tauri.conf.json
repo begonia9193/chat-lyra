@@ -23,9 +23,9 @@
         "title": "花花翻译",
         "url": "src/translate/index.html",
         "visible": false,
-        "closable": false,
         "focus": true,
-        "transparent": true
+        "transparent": true,
+        "center": true
       }
     ],
     "security": {
