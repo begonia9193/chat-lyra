@@ -7,6 +7,9 @@
     "core:default",
     "shell:allow-open",
     "store:default",
-    "store:allow-create-store"
+    "store:allow-create-store",
+    "core:window:allow-start-dragging",
+    "core:window:allow-is-focused",
+    "core:window:deny-is-focused"
   ]
 }

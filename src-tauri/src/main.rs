@@ -26,7 +26,8 @@ fn run() {
                 .build()
         )
         .invoke_handler(tauri::generate_handler![
-            hotkey::registry_hotkey_by_frontend
+            hotkey::registry_hotkey_by_frontend,
+            translate::hide_translate_window
         ])
         .setup(|app| {
             APP.get_or_init(|| app.handle().clone());
