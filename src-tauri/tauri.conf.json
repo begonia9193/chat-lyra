@@ -14,20 +14,22 @@
       {
         "label": "workbench",
         "title": "Begonia Copilot",
-        "width": 800,
-        "height": 600,
+        "width": 1380,
+        "height": 880,
         "url": "src/workbench/index.html",
         "center": true
       },
       {
         "label": "translate",
-        "title": "花花翻译",
         "url": "src/translate/index.html",
         "visible": false,
         "decorations": false,
         "hiddenTitle": true,
         "center": true,
-        "skipTaskbar": true
+        "skipTaskbar": true,
+        "alwaysOnTop": true,
+        "width": 350,
+        "height": 400
       }
     ],
     "security": {

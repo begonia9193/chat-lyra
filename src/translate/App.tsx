@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const windowUnActiveListener = () => {
       if (!controlBarIsActiveRef.current) {
-        invoke('hide_translate_window')
+        invoke('translate.hide_window')
       }
     }
 

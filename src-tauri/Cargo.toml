@@ -18,6 +18,7 @@ serde_json = "1.0.128"
 tauri-plugin-store = "2.0.1"
 tauri-plugin-log = "2.0.1"
 log = "0.4.22"
+selection="1.2.0"
 
 [target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
 tauri-plugin-global-shortcut = "2.0.1"
