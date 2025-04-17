@@ -1,9 +1,14 @@
 use crate::APP;
 use selection;
-use std::{option::Option, thread::sleep, time::Duration};
-use tauri::{LogicalSize, Manager, Size, Window};
+use std::{
+    option::Option,
+    thread::sleep,
+    time::Duration,
+};
+use tauri::{Emitter, LogicalSize, Manager, Size, Window};
 
 pub fn selection_translate() {
+    let text = selection::get_text();
     if let Some(window) = get_window() {
         if window.is_visible().unwrap() == false {
             let window_size = LogicalSize::new(350, 400);
@@ -16,7 +21,11 @@ pub fn selection_translate() {
             window.center().unwrap();
             sleep(Duration::from_millis(10));
         }
-        // window.set_focus().unwrap();
+        window.set_focus().unwrap();
+        
+        if !text.trim().is_empty() {
+            window.emit("translate_text_change", text).unwrap();
+        }
     }
 }
 
@@ -30,14 +39,9 @@ pub fn get_window() -> Option<Window> {
     window
 }
 
-#[tauri::command(namespace = "translate")]
-pub fn hide_window() {
+#[tauri::command]
+pub fn translate_hide_window() {
     if let Some(window) = get_window() {
         window.hide().unwrap();
     }
-}
-
-#[tauri::command(namespace = "translate")]
-pub fn get_selection_text() -> String {
-    selection::get_text()
 }
