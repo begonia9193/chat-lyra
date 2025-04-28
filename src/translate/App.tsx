@@ -18,7 +18,6 @@ function App() {
     window.addEventListener('blur', windowUnActiveListener)
 
     const translateTextChangeListener = listen('translate_text_change', (event: { payload: string }) => {
-      console.log(">>>>>>>>>>>>>>>>", event)
       setTranslateText(event.payload)
     })
 
@@ -33,10 +32,12 @@ function App() {
       <div
         onMouseEnter={() => controlBarIsActiveRef.current = true}
         onMouseLeave={() => controlBarIsActiveRef.current = false}
-        data-tauri-drag-region className='w-full h-40px bg-gray'>
+        data-tauri-drag-region className='w-full h-32px'>
+        <span>
 
+        </span>
       </div>
-      <h1>{translateText}</h1>
+      <h1>{translateText}</h1>，
     </main>
   )
 }

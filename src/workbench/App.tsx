@@ -26,7 +26,7 @@ function App() {
   })
 
   return (
-    <main className="container">
+    <main className="container bg-red">
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
@@ -54,7 +54,7 @@ function App() {
           onChange={(e) => setName(e.currentTarget.value)}
           placeholder="Enter a name..."
         />
-        <button type="submit">Greet</button>
+        <button type="submit" className='bg-blue'>Greet</button>
       </form>
       <p>{greetMsg}</p>
     </main>

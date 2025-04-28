@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Begonia Copilot",
+  "productName": "ChatLyra",
   "version": "0.1.0",
-  "identifier": "com.begonia.copilot.app",
+  "identifier": "com.begonia.ChatLyra.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -13,23 +13,11 @@
     "windows": [
       {
         "label": "workbench",
-        "title": "Begonia Copilot",
+        "title": "ChatLyra",
         "width": 1380,
         "height": 880,
         "url": "src/workbench/index.html",
         "center": true
-      },
-      {
-        "label": "translate",
-        "url": "src/translate/index.html",
-        "visible": false,
-        "decorations": false,
-        "hiddenTitle": true,
-        "center": true,
-        "skipTaskbar": true,
-        "alwaysOnTop": true,
-        "width": 350,
-        "height": 400
       }
     ],
     "security": {
