@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "label": "workbench",
+        "label": "main",
         "title": "ChatLyra",
         "width": 1380,
         "height": 880,
