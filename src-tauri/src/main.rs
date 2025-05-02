@@ -1,10 +1,11 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-mod window;
 mod tray;
+mod window;
+mod db;
 
 use std::sync::OnceLock;
-use tauri::{Manager, RunEvent};
+use tauri::Manager;
 
 pub static APP: OnceLock<tauri::AppHandle> = OnceLock::new();
 
@@ -32,22 +33,31 @@ fn run() {
             println!("Chat Lyra is Setup !");
             window::init_main_window(app.handle());
             tray::init_tray(app.handle());
+            println!("{:?}", app.path().app_data_dir());
+            db::establish_connection(app.handle());
 
             Ok(())
         })
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
 
+    #[cfg(target_os = "macos")]
     app.run(|handle, event| match event {
-        RunEvent::Reopen { has_visible_windows, .. } => {
+        tauri::RunEvent::Reopen {
+            has_visible_windows,
+            ..
+        } => {
             if !has_visible_windows {
                 let main_window = handle.get_webview_window("main").unwrap();
                 main_window.show().unwrap();
                 main_window.set_focus().unwrap();
             }
-        },
-        _ => ()
+        }
+        _ => (),
     });
+
+    #[cfg(target_os = "windows")]
+    app.run(|_handle, _event| {});
 }
 
 fn main() {
