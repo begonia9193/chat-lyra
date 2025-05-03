@@ -17,8 +17,8 @@ function App() {
 
   return (
     <div className='w-full h-full flex'>
-      <div className='w-240px h-full flex flex-col of-hidden b-r-1 b-solid b-#E1E1EF'>
-        <div className='h-50px b-b-1 b-solid b-#E1E1EF flex items-center justify-center'>
+      <div className='w-240px h-full flex flex-col of-hidden b-r-1 b-solid b-line'>
+        <div className='h-50px b-b-1 b-solid b-line flex items-center justify-center'>
           LOGO
         </div>
         <div className='flex-1 h-full p-16px'>
