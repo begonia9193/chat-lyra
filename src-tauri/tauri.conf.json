@@ -18,6 +18,14 @@
         "height": 880,
         "url": "src/workbench/index.html",
         "center": true
+      },
+      {
+        "label": "setting",
+        "width": 1000,
+        "height": 600,
+        "visible": false,
+        "center": true,
+        "url": "src/setting/index.html"
       }
     ],
     "security": {

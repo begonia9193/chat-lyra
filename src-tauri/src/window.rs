@@ -11,3 +11,16 @@ pub fn init_main_window(app: &tauri::AppHandle) {
         _ => {}
     });
 }
+
+pub fn init_setting_window(app: &tauri::AppHandle) {
+    let setting_window = app.get_webview_window("setting").unwrap();
+    let clone_setting_window = setting_window.clone();
+    setting_window.on_window_event(move |event| match event {
+        tauri::WindowEvent::CloseRequested { api, .. } => {
+            clone_setting_window.hide().unwrap();
+            api.prevent_close();
+        }
+        _ => {}
+    });
+}
+

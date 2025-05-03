@@ -32,8 +32,9 @@ fn run() {
         .setup(|app| {
             println!("Chat Lyra is Setup !");
             window::init_main_window(app.handle());
+            window::init_setting_window(app.handle());
             tray::init_tray(app.handle());
-            println!("{:?}", app.path().app_data_dir());
+            // println!("{:?}", app.path().app_data_dir());
             db::establish_connection(app.handle());
 
             Ok(())

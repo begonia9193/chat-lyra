@@ -11,6 +11,7 @@ export default defineConfig(async () => ({
     rollupOptions: {
       input: {
         workbench: path.resolve(__dirname, 'src/workbench/index.html'),
+        setting: path.resolve(__dirname, 'src/setting/index.html'),
       },
       output: {
         assetFileNames: 'assets/[name]-[hash].[ext]', // 静态资源
