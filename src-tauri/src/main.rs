@@ -36,6 +36,7 @@ fn run() {
             tray::init_tray(app.handle());
             // println!("{:?}", app.path().app_data_dir());
             db::establish_connection(app.handle());
+            db::run_migrations();
 
             Ok(())
         })
