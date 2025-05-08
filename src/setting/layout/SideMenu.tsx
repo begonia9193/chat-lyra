@@ -8,7 +8,7 @@ const MenuItem = ({ path, label, isActive, icon }: { path: string; label: string
   return (
     <div
       className={classNames(
-        'flex size-64px flex-col justify-center rd-6px items-center cursor-pointer hover:bg-primary/12%',
+        'flex size-64px flex-col justify-center rd-6px items-center cursor-pointer hover:bg-primary/12% shrink-0',
         { 'bg-primary/12% text-primary font-500': isActive }
       )}
       onClick={() => navigate(path)}
@@ -26,7 +26,7 @@ export const SideMenu = () => {
   const currentPath = location.pathname;
 
   return (
-    <div className="w-80px h-full p-8px b-r-1 b-solid b-line/60% flex flex-col gap-4px">
+    <div className="w-80px h-full p-8px b-r-1 b-solid b-line/60% flex flex-col gap-4px pt-30px of-y-auto">
       <MenuItem
         path="/model-provider"
         label="提供商"

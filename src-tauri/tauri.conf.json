@@ -17,15 +17,20 @@
         "width": 1380,
         "height": 880,
         "url": "src/workbench/index.html",
-        "center": true
+        "center": true,
+        "hiddenTitle": true,
+        "titleBarStyle": "Overlay"
       },
       {
+        "title": "ChatLyra | 设置",
         "label": "setting",
         "width": 1000,
         "height": 600,
         "visible": false,
         "center": true,
-        "url": "src/setting/index.html"
+        "url": "src/setting/index.html",
+        "hiddenTitle": true,
+        "titleBarStyle": "Overlay"
       }
     ],
     "security": {
