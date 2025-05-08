@@ -1,13 +1,14 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import classNames from 'classnames';
+import cn from 'classnames';
 import { Icon } from '@/components/Icon';
+import { platform } from '@tauri-apps/plugin-os';
 
 const MenuItem = ({ path, label, isActive, icon }: { path: string; label: string; isActive: boolean; icon: string; }) => {
   const navigate = useNavigate();
 
   return (
     <div
-      className={classNames(
+      className={cn(
         'flex size-64px flex-col justify-center rd-6px items-center cursor-pointer hover:bg-primary/12% shrink-0',
         { 'bg-primary/12% text-primary font-500': isActive }
       )}
@@ -26,7 +27,9 @@ export const SideMenu = () => {
   const currentPath = location.pathname;
 
   return (
-    <div className="w-80px h-full p-8px b-r-1 b-solid b-line/60% flex flex-col gap-4px pt-30px of-y-auto">
+    <div className={cn('w-80px h-full p-8px b-r-1 b-solid b-line/60% flex flex-col gap-4px of-y-auto', {
+      'pt-30px': platform() === 'macos'
+    })}>
       <MenuItem
         path="/model-provider"
         label="提供商"

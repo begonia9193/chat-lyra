@@ -18,6 +18,7 @@ fn run() {
             main_window.set_focus().unwrap();
         }))
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_global_shortcut::Builder::default().build())
         .plugin(
             tauri_plugin_log::Builder::new()
