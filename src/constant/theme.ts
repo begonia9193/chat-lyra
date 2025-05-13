@@ -13,7 +13,7 @@ export const colors = {
   font_2: '#979797',
   font_red: '#E54A17', // 红色文本
   // 主色调-紫色
-  primary: '#16C47F', // 强调色
+  primary: '#8672d3', // 强调色
   // 强调色
   success: '#00B042', //  成功色
   error: '#FF5219', // 红色，一般是错误按钮

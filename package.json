@@ -25,7 +25,8 @@
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^7.5.3"
+    "react-router-dom": "^7.5.3",
+    "react-textarea-autosize": "^8.5.9"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
