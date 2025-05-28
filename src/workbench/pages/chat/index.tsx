@@ -8,12 +8,10 @@ export const ChatPage = memo(() => {
 
   return (
     <div className="w-full h-full of-hidden flex flex-col">
-      <div className='h-30px shrink-0'>
-      </div>
       <div className='flex-1 of-auto'>
         message list
       </div>
-      <div>
+      <div className='pb-16px px-20px'>
         <MessageInput
           value={''}
           onChange={() => {}}

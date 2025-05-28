@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import { Icon } from '@/components/Icon';
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -44,7 +44,9 @@ export default function Layout() {
             </Button>
           </div>
         </div>
-        <div className='flex-1 pt-25px w-full of-hidden'>
+        <div className={cn('flex-1 w-full of-hidden', {
+          'pt-25px': platform() === 'macos'
+        })}>
           <Routes>
             <Route path="/" element={<Navigate to="/chat/new-conversation" replace />} />
             <Route path="/chat/:id" element={<ChatPage />} />

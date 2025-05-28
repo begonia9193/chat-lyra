@@ -87,7 +87,7 @@ export const MessageInput = memo<MessageInputProps>((props) => {
                   onKeyDown={handleKeyDown}
                   className='block min-h-[24px] w-full h-full p-[0] placeholder:align-middle resize-none border-0 bg-white text-[14px]/[24px] outline-0 placeholder:text-[#8d8d99] placeholder:leading-[24px] text-[#17171d] focus-visible:outline-none disabled:placeholder:text-[#8d8d99]-40'
                   value={value}
-                  placeholder="请输入...."
+                  placeholder="问我任何问题...."
                   minRows={1}
                   maxRows={6}
                   onChange={event => {
@@ -137,19 +137,19 @@ export function SendButton(props: SendButtonProps) {
   return (
     <div
       className={cn(
-        'chat-bg-linear flex items-center justify-center cursor-pointer text-white hover:opacity-80',
+        'flex items-center justify-center cursor-pointer text-white hover:opacity-80 size-32px',
         {
           'btn-icon-only': size === 'normal',
           '!opacity-40 hover:!opacity-40 !cursor-not-allowed':
             disabled,
         },
       )}
+      style={{
+        background: 'linear-gradient(143deg, #68caff 0%, #684aff 56%, #963aff 89%)',
+      }}
       onClick={() => !disabled && onClick?.()}
     >
-      <Icon
-        icon='i-icons-send'
-        className='text-[20px] w-16px h-16px'
-      />
+      <img src='/assets/send.svg' className='size-16px!' />
     </div>
   );
 }
