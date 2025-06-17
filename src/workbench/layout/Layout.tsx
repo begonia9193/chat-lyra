@@ -44,7 +44,9 @@ export default function Layout() {
             </Button>
           </div>
         </div>
-        <div className='flex-1 pt-25px w-full of-hidden'>
+        <div className={cn('flex-1 w-full of-hidden', {
+          'pt-25px': platform() === 'macos'
+        })}>
           <Routes>
             <Route path="/" element={<Navigate to="/chat/new-conversation" replace />} />
             <Route path="/chat/:id" element={<ChatPage />} />
