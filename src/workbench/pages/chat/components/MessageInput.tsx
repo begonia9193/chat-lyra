@@ -1,26 +1,25 @@
-import { memo, useRef } from 'react';
-import cn from 'classnames';
-import TextAreaAutoSize, { TextareaAutosizeProps } from 'react-textarea-autosize';
-import { Icon } from '@/components/Icon';
+import { memo, useRef } from 'react'
+import cn from 'classnames'
+import TextAreaAutoSize, { TextareaAutosizeProps } from 'react-textarea-autosize'
 
 interface MessageInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  onSubmit: () => void;
-  generating: boolean;
-  onStopGenerate?: () => void;
+  value: string
+  onChange: (value: string) => void
+  onSubmit: () => void
+  generating: boolean
+  onStopGenerate?: () => void
 }
 
 export const MessageInput = memo<MessageInputProps>((props) => {
-  const { value, onChange, onSubmit, generating, onStopGenerate } = props;
+  const { value, onChange, onSubmit, generating, onStopGenerate } = props
 
-  const compositing = useRef(false);
+  const compositing = useRef(false)
   const handleKeyDown: TextareaAutosizeProps['onKeyDown'] = event => {
     if (generating) {
-      return;
+      return
     }
     if (event.code === 'Enter') {
-      event.preventDefault();
+      event.preventDefault()
       // 防止用户自定义组合键换行冲突
       if (
         compositing.current ||
@@ -28,34 +27,34 @@ export const MessageInput = memo<MessageInputProps>((props) => {
         event.ctrlKey ||
         event.metaKey
       ) {
-        return;
+        return
       }
       // 追加回车
       if (event.shiftKey) {
         const { value, selectionStart, selectionEnd } =
-          event.target as HTMLTextAreaElement;
+          event.target as HTMLTextAreaElement
         const newValue = `${value.slice(0, selectionStart)}\n${value.slice(
           selectionEnd,
-        )}`;
-        onChange(newValue);
-        return;
+        )}`
+        onChange(newValue)
+        return
       }
-      onSubmit();
+      onSubmit()
     }
-  };
+  }
 
   const handleComposition: React.CompositionEventHandler<
     HTMLTextAreaElement
   > = event => {
     // 输入中文时，敲下回车，不触发发送
     if (event.type === 'compositionstart') {
-      compositing.current = true;
-      return;
+      compositing.current = true
+      return
     }
     if (event.type === 'compositionend') {
-      compositing.current = false;
+      compositing.current = false
     }
-  };
+  }
 
   return (
     <div
@@ -91,8 +90,8 @@ export const MessageInput = memo<MessageInputProps>((props) => {
                   minRows={1}
                   maxRows={6}
                   onChange={event => {
-                    const content = event.target.value;
-                    onChange(content);
+                    const content = event.target.value
+                    onChange(content)
                   }}
                   onCompositionStart={handleComposition}
                   onCompositionEnd={handleComposition}
@@ -110,10 +109,8 @@ export const MessageInput = memo<MessageInputProps>((props) => {
                     />
                   )}
                   {generating && (
-                    <Icon
-                      icon='i-icons-stop'
-                      className='cursor-pointer'
-                      onClick={() => onStopGenerate?.()}
+                    <StopButton
+                      onClick={onStopGenerate}
                     />
                   )}
                 </div>
@@ -123,21 +120,21 @@ export const MessageInput = memo<MessageInputProps>((props) => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
-export interface SendButtonProps {
-  size?: 'normal' | 'large';
-  disabled?: boolean;
-  onClick?: () => void;
+export interface ActionButton {
+  size?: 'normal' | 'large'
+  disabled?: boolean
+  onClick?: () => void
 }
 
-export function SendButton(props: SendButtonProps) {
-  const { size = 'normal', disabled = false, onClick } = props;
+export function SendButton(props: ActionButton) {
+  const { size = 'normal', disabled = false, onClick } = props
   return (
     <div
       className={cn(
-        'flex items-center justify-center cursor-pointer text-white hover:opacity-80 size-32px',
+        'flex items-center justify-center cursor-pointer text-white hover:opacity-80 size-full',
         {
           'btn-icon-only': size === 'normal',
           '!opacity-40 hover:!opacity-40 !cursor-not-allowed':
@@ -151,5 +148,28 @@ export function SendButton(props: SendButtonProps) {
     >
       <img src='/assets/send.svg' className='size-16px!' />
     </div>
-  );
+  )
+}
+
+export function StopButton(props: ActionButton) {
+  const { size = 'normal', disabled = false, onClick } = props
+
+  return (
+    <div
+      className={cn(
+        'flex items-center justify-center cursor-pointer text-white hover:opacity-80 size-full',
+        {
+          'btn-icon-only': size === 'normal',
+          '!opacity-40 hover:!opacity-40 !cursor-not-allowed':
+            disabled,
+        },
+      )}
+      style={{
+        background: 'linear-gradient(143deg, #68caff 0%, #684aff 56%, #963aff 89%)',
+      }}
+      onClick={() => !disabled && onClick?.()}
+    >
+      <img src='/assets/stop.svg' />
+    </div>
+  )
 }
